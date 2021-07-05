@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="inner_item">
+            <nav>
+                <h1>to do list</h1>
+                <p>remind your work here</p>
+            </nav>
+            <input type="text" value="" id="myinput">
+            <button onclick="add()" value="nddnjj">ADD</button>
+            <ul id="demo">
+
+            </ul>
+        </div>
+    </div>
+    <script>
+        function add() {
+            var ul = document.getElementById("demo");
+            var txt = document.getElementById("myinput").value;
+            if (txt == "") {
+                alert("please write something");
+            } else {
+                var list = document.createElement("li");
+                list.append(txt);
+                ul.appendChild(list);
+
+                //cross sign
+                var span = document.createElement("SPAN");
+                var txt = document.createTextNode("\u00D7");
+                span.className = "close";
+                span.appendChild(txt);
+                list.appendChild(span);
+
+
+                // Click on a close button to hide the current list item
+                var close = document.getElementsByClassName("close");
+                var i;
+                for (i = 0; i < close.length; i++) {
+                    close[i].onclick = function() {
+                        var div = this.parentElement;
+                        div.style.display = "none";
+                    }
+
+                }
+                // Add a "checked" symbol when clicking on a list item
+                var ullist = document.querySelector('ul');
+                ullist.addEventListener('click', function(ev) {
+                    if (ev.target.tagName === 'LI') {
+                        ev.target.classList.toggle('checked');
+                    }
+                });
+
+                //reset field
+                document.getElementById("myinput").value = '';
+
+            }
+        }
+    </script>
+</body>
+
+</html>
